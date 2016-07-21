@@ -1,12 +1,14 @@
 class Movie < ApplicationRecord
 
+  mount_uploader :upload_image, ImageUploader
+
   has_many :reviews
 
   validates :title, presence: true
   validates :director, presence: true
   validates :runtime_in_minutes, numericality: {only_integer: true}
   validates :description, presence: true
-  validates :poster_image_url, presence: true
+  validates :upload_image, presence: true
   validates :release_date, presence: true
 
   validate :release_date_in_the_past
