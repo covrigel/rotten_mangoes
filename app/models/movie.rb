@@ -12,7 +12,7 @@ class Movie < ApplicationRecord
   validate :release_date_in_the_past
 
   def review_average
-    reviews.sum(:rating_out_of_ten)/reviews.size
+    reviews.size > 0 ? reviews.sum(:rating_out_of_ten)/reviews.size : "This movie has no reviews yet"
   end
 
   private
